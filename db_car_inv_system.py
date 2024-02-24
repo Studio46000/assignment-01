@@ -4,7 +4,7 @@ class Database:
     def __init__(self,db) :
         self.conn= sqlite3.connect(db)
         self.cur = self.conn.cursor()
-        self.cur.execute("CREATE TABLE IF NOT EXISTS cars (serial number INTEGER, car brand TEXT, model name TEXT, body type TEXT, manufacturing year TEXT, transmission TEXT, mileage TEXT, car status TEXT)")
+        self.cur.execute("CREATE TABLE IF NOT EXISTS cars (serialnumber INTEGER, carbrand TEXT, modelname TEXT, bodytype TEXT, manufacturingyear TEXT, transmission TEXT, mileage TEXT, carstatus TEXT)")
         self.conn.commit()
 
     def fetch(self):
@@ -12,8 +12,9 @@ class Database:
         rows = self.cur.fetchall()
         return rows
     
+    # func
     def insert(self, carbrand, modelname, bodytype, manufacturingyear, transmission, mileage, carstatus):
-        self.cur.execute("INSERT INTO cars VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?)",(carbrand,modelname, bodytype, manufacturingyear, transmission, mileage, carstatus))
+        self.cur.execute("INSERT INTO cars VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)",(carbrand,modelname, bodytype, manufacturingyear, transmission, mileage, carstatus))
         self.conn.commit()
     
     def remove(self,serialnumber):
