@@ -12,7 +12,7 @@ class Database:
         rows = self.cur.fetchall()
         return rows
     
-    # func
+
     def insert(self, carbrand, modelname, bodytype, manufacturingyear, transmission, mileage, carstatus):
         self.cur.execute("INSERT INTO cars VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)",(carbrand,modelname, bodytype, manufacturingyear, transmission, mileage, carstatus))
         self.conn.commit()

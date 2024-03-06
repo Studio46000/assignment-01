@@ -1,4 +1,26 @@
 from tkinter import *
+from tkinter import ttk
+from db import Database
+
+db = Database('sample.db')
+
+def populate_list():
+    for row in db.fetch():
+        car_list.insert(END, row)
+
+
+def add_item():
+    print ('add item')
+
+def remove_item():
+    print ('remove item')
+
+def edit_item():
+    print ('edit item')
+
+def delete_item():
+    print ('delete item')
+
 
 # to create window object
 app = Tk()
