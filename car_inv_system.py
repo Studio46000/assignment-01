@@ -2,24 +2,26 @@ from tkinter import *
 from tkinter import messagebox
 from db import Database
 
-db = Database('sample.db')
-
+db = Database('inventory.db')
+#insert entries to listbox
 def populate_list():
     car_list.delete(0, END)
     for row in db.fetch():
         car_list.insert(END, row)
-
+# add entry function
 def add_item():
+    #catch mileage error
     try:
         mileage = int(mi_text.get())
     except ValueError:
         messagebox.showerror('Invalid Input',"Mileage must be an integer")
         return
+    #catch manufacturing year error
     manufacturing_year =my_text.get()
     if not manufacturing_year.isdigit() or len(manufacturing_year) != 4:
         messagebox.showerror('Invalid Input','Manufacturing Year must be a four digit number')
         return
-    
+    #catch missing field inputs error
     if cb_text.get() == '' or mn_text.get() == '' or bt_text.get() == '' or my_text.get() == '' or tr_text.get() == '' or mi_text.get() == '':
         messagebox.showerror('Required Fields','One (or more) of the fields are missing. Please include all fields')
         return
@@ -28,8 +30,8 @@ def add_item():
     car_list.insert (END,(cb_text.get(),mn_text.get(),bt_text.get(),manufacturing_year,tr_text.get(),str(mileage)))
     clear_text()
     populate_list()
-    #print ('add item')
 
+# define action when selecting items
 def select_item(event):
     try:
         global selected_item 
@@ -51,12 +53,12 @@ def select_item(event):
         pass
 
 
-
+# remove button
 def remove_item():
     db.remove(selected_item[0])
     populate_list()
     clear_text()
-
+#edit button
 def edit_item():
     try:
         mileage = int(mi_text.get())
@@ -69,7 +71,7 @@ def edit_item():
         return
     db.update(selected_item[0], cb_text.get(),mn_text.get(),bt_text.get(),manufacturing_year,tr_text.get(),str(mileage))
     populate_list()
-
+#clear text
 def clear_text():
     cb_entry.delete(0,END)
     mn_entry.delete(0,END)
@@ -128,14 +130,16 @@ mi_entry.grid(row=3,column=3)
 
 #to create inventory entry list
 car_list = Listbox(app, height=8,width=60, border=0)
-car_list.grid(row=5,column=1,columnspan=3,rowspan=6,pady=20,padx=20)
+car_list.grid(row=5, column=1, columnspan=3, rowspan=6, pady=20,padx=(20,0),sticky="nsew")
 
 #to create scrollbar to the entry list
 scrollbar = Scrollbar(app)
-scrollbar.grid(row=5,column=4)
+scrollbar.grid(row=5,column=4,rowspan=6,pady=20, padx=(0,20),sticky="ns")
+
 #set scrollbbar to listbox
-car_list.configure(yscrollcommand=scrollbar.set)
-scrollbar.configure(command=car_list.yview)
+car_list.configure(yscrollcommand= scrollbar.set)
+scrollbar.configure(command= car_list.yview)
+
 # Bind select
 car_list.bind('<<ListboxSelect>>',select_item)
 
