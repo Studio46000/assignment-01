@@ -10,12 +10,12 @@ def populate_list():
         car_list.insert(END, row)
 
 def add_item():
-    if cb_text.get() == '' or mn_text.get() == '' or bt_text.get() == '' or my_text.get() == '' or tr_text.get() == '' or mi_text.get() == '' or cs_text.get() == '':
+    if cb_text.get() == '' or mn_text.get() == '' or bt_text.get() == '' or my_text.get() == '' or tr_text.get() == '' or mi_text.get() == '':
         messagebox.showerror('Required Fields','One (or more) of the fields are missing. Please include all fields')
         return
-    db.insert(cb_text.get(),mn_text.get(),bt_text.get(),my_text.get(),tr_text.get(),mi_text.get(),cs_text.get())
+    db.insert(cb_text.get(),mn_text.get(),bt_text.get(),my_text.get(),tr_text.get(),mi_text.get())
     car_list.delete(0, END)
-    car_list.insert (END,(cb_text.get(),mn_text.get(),bt_text.get(),my_text.get(),tr_text.get(),mi_text.get(),cs_text.get()))
+    car_list.insert (END,(cb_text.get(),mn_text.get(),bt_text.get(),my_text.get(),tr_text.get(),mi_text.get()))
     populate_list()
     #print ('add item')
 
@@ -35,8 +35,7 @@ def select_item(event):
     tr_entry.insert(END, selected_item[4])
     mi_entry.delete(0,END)
     mi_entry.insert(END, selected_item[5])
-    cs_entry.delete(0,END)
-    cs_entry.insert(END, selected_item[6])
+
 
 
 def remove_item():
@@ -96,12 +95,6 @@ mi_label.grid(row=3,column=2,sticky=W)
 mi_entry = Entry(app, textvariable=mi_text)
 mi_entry.grid(row=3,column=3)
 
-# to initialise label for car status
-cs_text = StringVar()
-cs_label = Label(app, text= 'Car Status', font= ('bold',14))
-cs_label.grid(row=0,column=2,sticky=W)
-cs_entry = Entry(app, textvariable=cs_text)
-cs_entry.grid(row=0,column=3)
 
 #to create inventory entry list
 car_list = Listbox(app, height=8,width=60, border=0)
