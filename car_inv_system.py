@@ -24,30 +24,42 @@ def select_item(event):
     index = car_list.curselection()[0]
     selected_item = car_list.get(index)
     cb_entry.delete(0,END)
-    cb_entry.insert(END, selected_item[0])
+    cb_entry.insert(END, selected_item[1])
     mn_entry.delete(0,END)
-    mn_entry.insert(END, selected_item[1])
+    mn_entry.insert(END, selected_item[2])
     bt_entry.delete(0,END)
-    bt_entry.insert(END, selected_item[2])
+    bt_entry.insert(END, selected_item[3])
     my_entry.delete(0,END)
-    my_entry.insert(END, selected_item[3])
+    my_entry.insert(END, selected_item[4])
     tr_entry.delete(0,END)
-    tr_entry.insert(END, selected_item[4])
+    tr_entry.insert(END, selected_item[5])
     mi_entry.delete(0,END)
-    mi_entry.insert(END, selected_item[5])
+    mi_entry.insert(END, selected_item[6])
 
 
 
 def remove_item():
     db.remove(selected_item[0])
     populate_list()
+    cb_entry.delete(0,END)
+    mn_entry.delete(0,END)
+    bt_entry.delete(0,END)
+    my_entry.delete(0,END)
+    tr_entry.delete(0,END)
+    mi_entry.delete(0,END)
     #print ('remove item')
 
 def edit_item():
     print ('edit item')
 
-def delete_item():
-    print ('delete item')
+def clear_text():
+    cb_entry.delete(0,END)
+    mn_entry.delete(0,END)
+    bt_entry.delete(0,END)
+    my_entry.delete(0,END)
+    tr_entry.delete(0,END)
+    mi_entry.delete(0,END)
+
 
 
 # to create window object
@@ -121,9 +133,9 @@ remove_btn.grid(row=4,column=1)
 edit_btn = Button(app,text= 'Edit Car', width= 12, command= edit_item)
 edit_btn.grid(row=4,column=2)
 
-#Delete Car Button
-delete_btn = Button(app,text= 'Delete Car', width= 12, command= delete_item)
-delete_btn.grid(row=4,column=3)
+#Clear Entry Button
+clear_btn = Button(app,text= 'Clear Entry', width= 12, command= clear_text)
+clear_btn.grid(row=4,column=3)
 
 
 app.title ('Car Inventory System')
