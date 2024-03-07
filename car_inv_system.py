@@ -10,12 +10,22 @@ def populate_list():
         car_list.insert(END, row)
 
 def add_item():
+    try:
+        mileage = int(mi_text.get())
+    except ValueError:
+        messagebox.showerror('Invalid Input',"Mileage must be an integer")
+        return
+    manufacturing_year =my_text.get()
+    if not manufacturing_year.isdigit() or len(manufacturing_year) != 4:
+        messagebox.showerror('Invalid Input','Manufacturing Year must be a four digit number')
+        return
+    
     if cb_text.get() == '' or mn_text.get() == '' or bt_text.get() == '' or my_text.get() == '' or tr_text.get() == '' or mi_text.get() == '':
         messagebox.showerror('Required Fields','One (or more) of the fields are missing. Please include all fields')
         return
-    db.insert(cb_text.get(),mn_text.get(),bt_text.get(),my_text.get(),tr_text.get(),mi_text.get())
+    db.insert(cb_text.get(),mn_text.get(),bt_text.get(),manufacturing_year,tr_text.get(),str(mileage))
     car_list.delete(0, END)
-    car_list.insert (END,(cb_text.get(),mn_text.get(),bt_text.get(),my_text.get(),tr_text.get(),mi_text.get()))
+    car_list.insert (END,(cb_text.get(),mn_text.get(),bt_text.get(),manufacturing_year,tr_text.get(),str(mileage)))
     clear_text()
     populate_list()
     #print ('add item')
@@ -48,7 +58,16 @@ def remove_item():
     clear_text()
 
 def edit_item():
-    db.update(selected_item[0], cb_text.get(),mn_text.get(),bt_text.get(),my_text.get(),tr_text.get(),mi_text.get())
+    try:
+        mileage = int(mi_text.get())
+    except ValueError:
+        messagebox.showerror('Invalid Input',"Mileage must be an integer")
+        return
+    manufacturing_year =my_text.get()
+    if not manufacturing_year.isdigit() or len(manufacturing_year) != 4:
+        messagebox.showerror('Invalid Input','Manufacturing Year must be a four digit number')
+        return
+    db.update(selected_item[0], cb_text.get(),mn_text.get(),bt_text.get(),manufacturing_year,tr_text.get(),str(mileage))
     populate_list()
 
 def clear_text():

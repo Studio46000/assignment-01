@@ -4,7 +4,7 @@ class Database:
     def __init__(self,db) :
         self.conn= sqlite3.connect(db)
         self.cur = self.conn.cursor()
-        self.cur.execute("CREATE TABLE IF NOT EXISTS cars (id INTEGER PRIMARY KEY,carbrand TEXT, modelname TEXT, bodytype TEXT, manufacturingyear TEXT, transmission TEXT, mileage TEXT)")
+        self.cur.execute("CREATE TABLE IF NOT EXISTS cars (id INTEGER PRIMARY KEY,carbrand TEXT, modelname TEXT, bodytype TEXT, manufacturingyear INTEGER, transmission TEXT, mileage INTEGER)")
         self.conn.commit()
 
     def fetch(self):
