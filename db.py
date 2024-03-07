@@ -4,7 +4,7 @@ class Database:
     def __init__(self,db) :
         self.conn= sqlite3.connect(db)
         self.cur = self.conn.cursor()
-        self.cur.execute("CREATE TABLE IF NOT EXISTS cars (serialnumber INTEGER, carbrand TEXT, modelname TEXT, bodytype TEXT, manufacturingyear TEXT, transmission TEXT, mileage TEXT, carstatus TEXT)")
+        self.cur.execute("CREATE TABLE IF NOT EXISTS cars (carbrand TEXT, modelname TEXT, bodytype TEXT, manufacturingyear TEXT, transmission TEXT, mileage TEXT, carstatus TEXT)")
         self.conn.commit()
 
     def fetch(self):
@@ -14,11 +14,11 @@ class Database:
     
 
     def insert(self, carbrand, modelname, bodytype, manufacturingyear, transmission, mileage, carstatus):
-        self.cur.execute("INSERT INTO cars VALUES (NULL, ?, ?, ?, ?, ?, ?, ?)",(carbrand,modelname, bodytype, manufacturingyear, transmission, mileage, carstatus))
+        self.cur.execute("INSERT INTO cars VALUES (?, ?, ?, ?, ?, ?, ?)",(carbrand,modelname, bodytype, manufacturingyear, transmission, mileage, carstatus))
         self.conn.commit()
     
-    def remove(self,serialnumber):
-        self.cur.execute("DELETE FROM cars WHERE serial number=?",(serialnumber,))
+    def remove(self,carbrand):
+        self.cur.execute("DELETE FROM cars WHERE carbrand=?",(carbrand,))
         self.conn.commit()
     
     def update (self, modelname, bodytype, manufacturingyear, transmission, mileage, carstatus):

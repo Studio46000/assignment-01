@@ -54,14 +54,6 @@ def delete_item():
 # to create window object
 app = Tk()
 
-# to initialise label for serial number
-sn_text = IntVar()
-sn_text = 1001
-sn_label = Label(app, text= 'Serial Number', font=('bold',14),pady=20)
-sn_label.grid(row=0, column=0, sticky=W)
-sn_number = Label(app,text= sn_text, font=(15),pady=20)
-sn_number.grid(row=0,column=1)
-
 # to initialise label for car brand
 cb_text = StringVar()
 cb_label = Label(app, text= 'Car Brand', font= ('bold',14))
