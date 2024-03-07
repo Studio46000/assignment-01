@@ -16,41 +16,40 @@ def add_item():
     db.insert(cb_text.get(),mn_text.get(),bt_text.get(),my_text.get(),tr_text.get(),mi_text.get())
     car_list.delete(0, END)
     car_list.insert (END,(cb_text.get(),mn_text.get(),bt_text.get(),my_text.get(),tr_text.get(),mi_text.get()))
+    clear_text()
     populate_list()
     #print ('add item')
 
 def select_item(event):
-    global selected_item 
-    index = car_list.curselection()[0]
-    selected_item = car_list.get(index)
-    cb_entry.delete(0,END)
-    cb_entry.insert(END, selected_item[1])
-    mn_entry.delete(0,END)
-    mn_entry.insert(END, selected_item[2])
-    bt_entry.delete(0,END)
-    bt_entry.insert(END, selected_item[3])
-    my_entry.delete(0,END)
-    my_entry.insert(END, selected_item[4])
-    tr_entry.delete(0,END)
-    tr_entry.insert(END, selected_item[5])
-    mi_entry.delete(0,END)
-    mi_entry.insert(END, selected_item[6])
+    try:
+        global selected_item 
+        index = car_list.curselection()[0]
+        selected_item = car_list.get(index)
+        cb_entry.delete(0,END)
+        cb_entry.insert(END, selected_item[1])
+        mn_entry.delete(0,END)
+        mn_entry.insert(END, selected_item[2])
+        bt_entry.delete(0,END)
+        bt_entry.insert(END, selected_item[3])
+        my_entry.delete(0,END)
+        my_entry.insert(END, selected_item[4])
+        tr_entry.delete(0,END)
+        tr_entry.insert(END, selected_item[5])
+        mi_entry.delete(0,END)
+        mi_entry.insert(END, selected_item[6])
+    except IndexError:
+        pass
 
 
 
 def remove_item():
     db.remove(selected_item[0])
     populate_list()
-    cb_entry.delete(0,END)
-    mn_entry.delete(0,END)
-    bt_entry.delete(0,END)
-    my_entry.delete(0,END)
-    tr_entry.delete(0,END)
-    mi_entry.delete(0,END)
-    #print ('remove item')
+    clear_text()
 
 def edit_item():
-    print ('edit item')
+    db.update(selected_item[0], cb_text.get(),mn_text.get(),bt_text.get(),my_text.get(),tr_text.get(),mi_text.get())
+    populate_list()
 
 def clear_text():
     cb_entry.delete(0,END)

@@ -21,9 +21,10 @@ class Database:
         self.cur.execute("DELETE FROM cars WHERE id=?",(id,))
         self.conn.commit()
     
-    def update (self, id, modelname, bodytype, manufacturingyear, transmission, mileage):
-        self.cur.execute("UPDATE cars SET modelname =?, bodytype =?, manufacturingyear=?, transmission=?, mileage=?, carstatus=? WHERE id =? "), (modelname, bodytype, manufacturingyear, transmission, mileage, id)
+    def update(self, id, carbrand, modelname, bodytype, manufacturingyear, transmission, mileage):
+        self.cur.execute("UPDATE cars SET carbrand=?, modelname=?, bodytype=?, manufacturingyear=?, transmission=?, mileage=? WHERE id=?", (carbrand, modelname, bodytype, manufacturingyear, transmission, mileage, id))
         self.conn.commit()
+
     
     def __del__(self):
         self.conn.close()
