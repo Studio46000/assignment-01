@@ -1,0 +1,5 @@
+([('car_inv_system',
+   '/Users/amirrulrasyid/Amirrul (Asia Pacific University)/Semester 0 - '
+   'Prequisite Modules/Software Design & Development/Assignment/Program/Car '
+   'Inventory System 2/dist/car_inv_system',
+   'EXECUTABLE')],)
