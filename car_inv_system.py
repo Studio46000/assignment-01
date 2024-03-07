@@ -8,6 +8,7 @@ def populate_list():
     car_list.delete(0, END)
     for row in db.fetch():
         car_list.insert(END, row)
+
 # add entry function
 def add_item():
     #catch mileage error
