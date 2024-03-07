@@ -31,6 +31,9 @@ def add_item():
     clear_text()
     populate_list()
 
+    messagebox.showinfo('Success','Car added successfully!')
+
+
 # define action when selecting items
 def select_item(event):
     try:
@@ -58,6 +61,8 @@ def remove_item():
     db.remove(selected_item[0])
     populate_list()
     clear_text()
+
+    messagebox.showinfo('Success','Car has been removed successfully!')
 #edit button
 def edit_item():
     try:
@@ -71,6 +76,8 @@ def edit_item():
         return
     db.update(selected_item[0], cb_text.get(),mn_text.get(),bt_text.get(),manufacturing_year,tr_text.get(),str(mileage))
     populate_list()
+
+    messagebox.showinfo('Success','Car details has been edited successfully!')
 #clear text
 def clear_text():
     cb_entry.delete(0,END)
@@ -161,7 +168,7 @@ clear_btn.grid(row=4,column=3)
 
 
 app.title ('Car Inventory System')
-app.geometry ('900x900')
+app.geometry ('750x400')
 
 populate_list()
 
