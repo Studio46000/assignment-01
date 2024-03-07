@@ -24,23 +24,23 @@ def select_item(event):
     index = car_list.curselection()[0]
     selected_item = car_list.get(index)
     cb_entry.delete(0,END)
-    cb_entry.insert(END, selected_item[1])
+    cb_entry.insert(END, selected_item[0])
     mn_entry.delete(0,END)
-    mn_entry.insert(END, selected_item[2])
+    mn_entry.insert(END, selected_item[1])
     bt_entry.delete(0,END)
-    bt_entry.insert(END, selected_item[3])
+    bt_entry.insert(END, selected_item[2])
     my_entry.delete(0,END)
-    my_entry.insert(END, selected_item[4])
+    my_entry.insert(END, selected_item[3])
     tr_entry.delete(0,END)
-    tr_entry.insert(END, selected_item[5])
+    tr_entry.insert(END, selected_item[4])
     mi_entry.delete(0,END)
-    mi_entry.insert(END, selected_item[6])
+    mi_entry.insert(END, selected_item[5])
     cs_entry.delete(0,END)
-    cs_entry.insert(END, selected_item[7])
+    cs_entry.insert(END, selected_item[6])
 
 
 def remove_item():
-    db.remove(selected_item[1])
+    db.remove(selected_item[0])
     populate_list()
     #print ('remove item')
 
